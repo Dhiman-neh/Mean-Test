@@ -1,0 +1,82 @@
+@import "../../../../styles.scss";
+
+.candidate-modal-heading {
+    // padding: 1rem 2rem; 
+    height: 73px;
+    // background-color: $navSelectedColor; 
+    border-bottom: 1px solid $border; 
+    margin: 0;
+
+    .candidate-modal-heading-span {
+        position: relative; 
+        top:26px; 
+        left: 50px;
+        @include fontOp(18px, black, 0, $mainHeadingFont);
+    }
+}
+
+.candidate-modal-form-root {
+    padding: 30px 50px;
+
+    .candidate-form-firstname-root {
+        display: flex;
+
+        .firstname-input-div {
+            margin-right: 15px;
+
+            .firstname-input {
+                width: 335px;
+            }
+        }
+    }
+
+    .invalid-text {
+        height: 13px;
+        margin-top: 5px;
+        padding: 0;
+        @include fontOp(11px, $invalid, normal, $regularFont);
+    }
+
+    .candidate-form-label {
+        @include fontOp(16px, black, 800, $labelFont);
+        margin-bottom: 7px;
+    }
+
+    .candidate-form-reset {
+        @include fontOp(16px, $primaryBlue, 200, $regularFont);
+        margin-bottom: 7px;
+        cursor: pointer;
+    }
+
+}
+
+.candidate-modal-footer {
+    height: 72px;
+    display: flex; 
+    justify-content: flex-end;
+    background-color: $secondaryGray;
+    
+    .candidate-form-send {
+        background-color: $primaryBlue;
+        color: $primaryWhite;
+        height: 40px;
+        width: 114px;
+        font-family: $labelFont;
+        font-size: 14px;
+        position: relative;
+        top: 16px;
+        bottom: 16px;
+        right: 50px;
+    }
+
+    .candidate-form-cancel {
+        position: relative;
+        right: 99px;
+        top: 24px;
+        bottom: 28px;
+        margin: 0;
+        padding: 0;
+        @include fontOp(14px, $primaryBlue, 0, $labelFont);
+    }
+}
+
