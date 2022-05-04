@@ -360,7 +360,7 @@ export class CandidateModalComponent implements OnInit {
             firstName: this.firstName,
             lastName: this.lastName,
             identityNumber: this.identityNumber,
-            mobileNumber: this.phoneNumber.e164Number,
+            mobileNumber: this.phoneNumber,
             country: this.country,
             addressLine2: this.address2,
             city: this.city,
