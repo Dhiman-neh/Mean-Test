@@ -1,64 +1,73 @@
 @import "../../../styles.scss";
 
 .candidate-header-main {
-    height: 100%;
-    @include margin(0, 2rem, 0, 2rem);
-    @include flexOp(flex, row, true, space-between, true, center);
+  height: 100%;
+  @include margin(0, 55px, 0, 55px);
+  @include flexOp(flex, row, true, space-between, true, center);
 
-    .candidate-search-root {
-        @include widthOp(50%);
-        @include flexOp(flex, row, false, null, true, center);
+  .candidate-search-root {
+    @include widthOp(50%);
+    @include flexOp(flex, row, false, null, true, center);
 
-        .search-input-root {
-            @include flexOp(flex, row, false, null, false, null);
-            @include widthOp(100%);
+    .search-input-root {
+      @include flexOp(flex, row, false, null, false, null);
+      @include widthOp(100%);
+      
+      .search-icon {
+        @include margin(0, 10px, 0, 0);
+      }
 
-            .search-icon {
-                @include margin(0, 10px, 0, 0);
-            }
-
-            .search-input {
-                border: none; 
-                background-color: inherit;
-                @include widthOp(45%);
-            }
-        }
-
+      .search-input {
+        padding-left: 24px;
+        border: none;
+        background-color: inherit;
+        @include widthOp(45%);
+      }
     }
 
-    .candidate-details-root {
-        @include flexOp(flex, row, true, flex-end, true, center);
-        @include widthOp(50%);
-        
-        .candidate-img {
-            border-radius: 100%; 
-            height: 50px; 
-            background-color: $userBackgroundColor;
-            @include margin(0, 10px, 0, 0);
-            @include widthOp(50px);
-            @include flexOp(flex, row, true, center, true, center);
-        }
+  }
 
-        .candidate-details-div {
-            // @include widthOp(40%);
-            @include flexOp(flex, row, false, null, true, center);
+  .candidate-details-root {
+    @include flexOp(flex, row, true, flex-end, true, center);
+    @include widthOp(50%);
 
-            .candidate__details {
-                display: flex; flex-direction: column;
-                @include flexOp(flex, column, false, null, false, null);
-            }
-
-            .candidate-name {
-                @include fontOp(14px, black, 800, $labelFont)
-            }
-
-            .candidate-details {
-                @include fontOp(12px, $nameDescriptionColor, 400, $labelFont)
-            }
-
-            .candidate-arrow {
-                cursor: pointer;
-            }
-        }
+    .candidate-img {
+      border-radius: 100%;
+      height: 50px;
+      background-color: $userBackgroundColor;
+      @include margin(0, 10px, 0, 0);
+      @include widthOp(50px);
+      @include flexOp(flex, row, true, center, true, center);
+       img {
+        width: 17.6px;
+        height: 22px;
+        object-fit: contain;
+      }
     }
+
+    .candidate-details-div {
+      // @include widthOp(40%);
+      @include flexOp(flex, row, false, null, true, center);
+
+      .candidate__details {
+        display: flex;
+        flex-direction: column;
+        @include flexOp(flex, column, false, null, false, null);
+        font-family: "SFProDisplay-regular";
+        opacity: 0.5;
+      }
+
+      .candidate-name {
+        @include fontOp(14px, black, 800, $labelFont)
+      }
+
+      .candidate-details {
+        @include fontOp(12px, $nameDescriptionColor, 400, $labelFont)
+      }
+
+      .candidate-arrow {
+        cursor: pointer;
+      }
+    }
+  }
 }

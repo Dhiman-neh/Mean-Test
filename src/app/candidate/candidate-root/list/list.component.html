@@ -3,10 +3,10 @@
         <div class="candidate-heading">Candidates</div>
         <div class="candidate-operation">
             <div>
-                <button mat-flat-button>Delete</button>
+                <button mat-flat-button class="delete-candidate-btn">Delete</button>
             </div>
             <div>
-                <button mat-flat-button class="new-candidate-btn" (click)="openDialog()">New Candidate +</button>
+                <button mat-flat-button class="new-candidate-btn" (click)="openDialog()">New Candidate <img src="../../../../assets/icons/icon-phone.svg" /></button>
             </div>
         </div>
     </div>
@@ -21,15 +21,15 @@
                     </mat-checkbox>
                 </th>
                 <td mat-cell *matCellDef="let row">
-                    <!-- <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+                    <mat-checkbox color="primary" (click)="$event.stopPropagation()"
                         (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
                         [aria-label]="checkboxLabel(row)">
-                    </mat-checkbox> -->
-                    <div style="width: 20px;
+                    </mat-checkbox>
+                    <!-- <div style="width: 20px;
                     height: 20px;
-                    padding: 1px;
+                    /* padding: 1px; */
                     border-radius: 4px;
-                    background-color: #eef2f6;"></div>
+                    background-color: #eef2f6;"></div> -->
                 </td>
             </ng-container>
 
@@ -37,26 +37,24 @@
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
                 <td mat-cell *matCellDef="let element"> 
-                    <!-- {{element.name}}  -->
-                    <div style="width: 147px;
+                    {{element.name}} 
+                    <!-- <div style="width: 147px;
                     height: 16px;
-                    margin: 43px 36px 24px 17px;
                     border-radius: 4px;
-                    background-color: #eef2f6;"></div>
+                    background-color: #eef2f6;"></div> -->
                 </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="idNumber">
-                <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header> ID NUMBER </th> -->
-                <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID NUMBER </th>
+                <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header></th> -->
                 <td mat-cell *matCellDef="let element"> 
-                    <!-- {{element.idNumber}}  -->
-                    <div style="width: 137px;
+                    {{element.idNumber}} 
+                    <!-- <div style="width: 137px;
                     height: 16px;
-                    margin: 43px 17px 24px 36px;
                     border-radius: 4px;
-                    background-color: #eef2f6;"></div>
+                    background-color: #eef2f6;"></div> -->
                 </td>
             </ng-container>
 
@@ -64,21 +62,20 @@
             <ng-container matColumnDef="location">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> LOCATION </th>
                 <td mat-cell *matCellDef="let element"> 
-                    <!-- <img style="width: 25px;" src={{element.flag}} />
-                    {{element.country}}  -->
+                    <img style="width: 25px;" src={{element.flag}} />
+                    {{element.country}} 
+                   <!-- <div class="location-load">
                     <div style="
                     width: 20px;
                     height: 20px;
-                    margin: 41px 5px 22px 17px;
-                    padding: 18px 0 0;
-                    border-radius: 4px;
-                    border: solid 1px #e9edf1;
-                    background-color: #fff;"></div>
+                    border-radius: 34px;
+                    border: solid 1px #eef2f6;
+                    background-color: #eef2f6;"></div>
                     <div style="width: 147px;
                     height: 16px;
-                    margin: 43px 80px 24px 5px;
                     border-radius: 4px;
                     background-color: #eef2f6;"></div>
+                   </div> -->
                 </td>
             </ng-container>
 
@@ -86,12 +83,11 @@
             <ng-container matColumnDef="emailAddress">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> EMAIL ADDRESS </th>
                 <td mat-cell *matCellDef="let element"> 
-                    <!-- {{element.emailAddress}}  -->
-                    <div style=" width: 180px;
+                    {{element.emailAddress}} 
+                    <!-- <div style=" width: 180px;
                     height: 16px;
-                    margin: 43px 50px 24px 80px;
                     border-radius: 4px;
-                    background-color: #eef2f6;"></div>
+                    background-color: #eef2f6;"></div> -->
                 </td>
             </ng-container>
 
@@ -99,12 +95,11 @@
             <ng-container matColumnDef="mobileNumber">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> MOBILE NUMBER </th>
                 <td mat-cell *matCellDef="let element"> 
-                    <!-- {{element.mobileNumber}}  -->
-                    <div style="width: 112px;
+                    {{element.mobileNumber}} 
+                    <!-- <div style="width: 112px;
                     height: 16px;
-                    margin: 43px 40px 24px 50px;
                     border-radius: 4px;
-                    background-color: #eef2f6;"></div>
+                    background-color: #eef2f6;"></div> -->
                 </td>
             </ng-container>
 
@@ -112,12 +107,11 @@
             <ng-container matColumnDef="daysActive">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> DAYS ACTIVE </th>
                 <td mat-cell *matCellDef="let element" class="daysActive"> 
-                    <!-- {{element.daysActive}}  -->
-                    <div style="width: 66px;
+                    {{element.daysActive}} 
+                    <!-- <div style="width: 66px;
                     height: 16px;
-                    margin: 43px 147px 24px 41px;
                     border-radius: 4px;
-                    background-color: #eef2f6;"></div>
+                    background-color: #eef2f6;"></div> -->
                 </td>
             </ng-container>
 
@@ -125,7 +119,7 @@
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let element">
-                    <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                         <mat-icon>more_horiz</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
@@ -135,7 +129,7 @@
                         <button mat-menu-item>
                             <span>Delete Candidate</span>
                         </button>
-                    </mat-menu> -->
+                    </mat-menu>
                 </td>
             </ng-container>
 

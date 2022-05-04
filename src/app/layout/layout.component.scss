@@ -1,0 +1,42 @@
+.main-content {
+    min-height: 99vh;
+
+    .sidebar-content {
+        width: 100%;
+        grid-template-columns: 74px auto;
+        display: grid;
+
+        .sidebar-main {
+            width: auto;
+            height: 100%;
+            background-color: #ffffff;
+            border-right: solid #e9edf1 1px;
+            padding-top: 2rem;
+        }
+
+        .candidate-main {
+            width: 100%;
+        }
+    }
+
+    .app-main-content {
+        display: grid;
+        width: 100%;
+        height: 73px;
+        grid-template-columns: 74px auto;
+        align-items: center;
+        justify-items: center;
+        border-bottom: solid #e9edf1 1px;
+
+        .header-main {
+            background-color: #ffffff;
+            width: 100%;
+        }
+
+        .logo-header {
+            width: 100%;
+            height: 100%;
+            border-right: solid #e9edf1 1px;     
+        }
+    }
+}
