@@ -375,7 +375,7 @@ export class CandidateModalComponent implements OnInit {
         }).subscribe((data) => {
           // console.log(data)
           this.matDialog.closeAll();
-
+          location.reload()
         }, (error) => {
           console.log('there was an error sending the query', error);
         });
@@ -415,7 +415,7 @@ export class CandidateModalComponent implements OnInit {
         }).subscribe((data) => {
           // console.log(data)
           this.matDialog.closeAll();
-
+          location.reload()
         }, (error) => {
           console.log('there was an error sending the query', error);
         });

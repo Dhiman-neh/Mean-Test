@@ -21,7 +21,7 @@
         width: 68px;
         height: 40px;
         border-radius: 4px;
-        background-color: #eef2f6;
+        background-color: $navSelectedColor;
       }
 
       .new-candidate-btn {
@@ -42,13 +42,64 @@
     height: 90%;
 
     .candidate-table {
-      border: solid #e9e9e9 1px;
+      border: solid $border 1px;
       table-layout: fixed;
 
       td.mat-cell {
         img {
           margin-right: 10px;
+          width: 25px;
         }
+      }
+      .check_load{
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        background-color: $navSelectedColor;
+      }
+      .name-loader{
+        width: 147px;
+        height: 16px;
+        border-radius: 4px;
+        background-color: $navSelectedColor;
+      }
+      .id-loader{
+        width: 137px;
+        height: 16px;
+        border-radius: 4px;
+        background-color: $navSelectedColor;
+      }
+      .location-check-load{
+        width: 20px;
+        height: 20px;
+        border-radius: 34px;
+        border: solid 1px $navSelectedColor;
+        background-color: $navSelectedColor;
+      }
+      .location-input{
+        width: 147px;
+        height: 16px;
+        border-radius: 4px;
+        background-color: $navSelectedColor;
+      }
+      .email-loader{
+        width: 180px;
+        height: 16px;
+        border-radius: 4px;
+        background-color: $navSelectedColor;
+
+      }
+      .mobile-loader{
+        width: 112px;
+        height: 16px;
+        border-radius: 4px;
+        background-color: $navSelectedColor;
+      }
+      .days-loader{
+        width: 66px;
+        height: 16px;
+        border-radius: 4px;
+        background-color: $navSelectedColor;
       }
       th.mat-header-cell:first-of-type,
       td.mat-cell:first-of-type,
@@ -66,7 +117,7 @@
         width: 57px !important;
       }
       .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background, .mat-checkbox-checked.mat-primary .mat-checkbox-background {
-        background-color: #3fa6d9;
+        background-color: $primaryBlue;
     }
 
       th.mat-header-cell,

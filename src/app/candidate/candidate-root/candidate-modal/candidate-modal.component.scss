@@ -1,98 +1,100 @@
 @import "../../../../styles.scss";
 
 .cdk-overlay-pane {
-  width: 821px !important;
+    width: 821px !important;
 }
 
 .candidate-modal-heading {
-  // padding: 1rem 2rem; 
-  height: 73px;
-  // background-color: $navSelectedColor; 
-  border-bottom: 1px solid $border;
-  margin: 0;
+    // padding: 1rem 2rem; 
+    height: 73px;
+    // background-color: $navSelectedColor; 
+    border-bottom: 1px solid $border;
+    margin: 0;
 
-  .candidate-modal-heading-span {
-    position: relative;
-    top: 26px;
-    left: 50px;
-    @include fontOp(18px, black, 0, $mainHeadingFont);
-  }
+    .candidate-modal-heading-span {
+        position: relative;
+        top: 26px;
+        left: 50px;
+        @include fontOp(18px, black, 0, $mainHeadingFont);
+    }
 }
 
 .candidate-modal-form-root {
-  padding: 30px 50px;
+    padding: 30px 50px;
 
-  span.input-group-text {
-    min-width: 181px;
-  }
-
-  .candidate-form-firstname-root {
-    display: flex;
-
-    .firstname-input-div {
-
-      .firstname-input {
-        width: 335px;
-        height: 40px;
-        margin-right: 15px;
-      }
+    span.input-group-text {
+        min-width: 181px;
     }
-  }
 
-  .invalid-text {
-    height: 13px;
-    margin-top: 5px;
-    padding: 0;
-    @include fontOp(11px, $invalid, normal, $regularFont);
-  }
+    .candidate-form-firstname-root {
+        display: flex;
 
-  .candidate-form-label {
-    @include fontOp(16px, black, 800, $labelFont);
-    margin-bottom: 7px;
-  }
+        .firstname-input-div {
 
-  .candidate-form-reset {
-    @include fontOp(16px, $primaryBlue, 200, $regularFont);
-    margin-bottom: 7px;
-    cursor: pointer;
-  }
+            .firstname-input {
+                width: 335px;
+                height: 40px;
+                margin-right: 15px;
+            }
+        }
+    }
+
+    .invalid-text {
+        height: 13px;
+        margin-top: 5px;
+        padding: 0;
+        @include fontOp(11px, $invalid, normal, $regularFont);
+    }
+
+    .candidate-form-label {
+        @include fontOp(16px, black, 800, $labelFont);
+        margin-bottom: 7px;
+    }
+
+    .candidate-form-reset {
+        @include fontOp(16px, $primaryBlue, 200, $regularFont);
+        margin-bottom: 7px;
+        cursor: pointer;
+    }
 
 }
 
 .candidate-modal-footer {
-  height: 72px;
-  display: flex;
-  justify-content: flex-end;
-  background-color: $secondaryGray;
+    height: 72px;
+    display: flex;
+    justify-content: flex-end;
+    background-color: $secondaryGray;
 
-  .candidate-form-send {
-    background-color: $primaryBlue;
-    color: $primaryWhite;
-    height: 40px;
-    width: 114px;
-    font-family: $labelFont;
-    font-size: 14px;
-    position: relative;
-    top: 16px;
-    bottom: 16px;
-    right: 50px;
-  }
+    .candidate-form-send {
+        background-color: $primaryBlue;
+        color: $primaryWhite;
+        height: 40px;
+        width: 114px;
+        font-family: $labelFont;
+        font-size: 14px;
+        position: relative;
+        top: 16px;
+        bottom: 16px;
+        right: 50px;
+    }
 
-  .candidate-form-cancel {
-    position: relative;
-    right: 99px;
-    top: 24px;
-    bottom: 28px;
-    margin: 0;
-    padding: 0;
-    @include fontOp(14px, $primaryBlue, 0, $labelFont);
-  }
+    .candidate-form-cancel {
+        position: relative;
+        right: 99px;
+        top: 24px;
+        bottom: 28px;
+        margin: 0;
+        padding: 0;
+        @include fontOp(14px, $primaryBlue, 0, $labelFont);
+    }
 }
+
 .iti__flag {
-  border-radius: 38px;
-  width: 15px;
-  height: 15px;
+    border-radius: 38px;
+    width: 15px;
+    height: 15px;
 }
+
 // .iti__selected-flag {
 //   .iti__arrow {
 //       background-image: url('../../../../assets/icons/drop-arrow.svg');
@@ -104,3 +106,56 @@
 //       border: none;
 //   }
 // }
+.divider {
+    margin-top: 46px;
+    margin-bottom: 30px;
+}
+
+.w-33 {
+    width: 33.33%;
+}
+
+.mr-1 {
+    margin-right: 1rem;
+}
+
+.addres-new{
+    margin-top: 18px;
+    width: 700px;
+    margin-bottom: 18px;
+}
+
+.country-select {
+    width: 213px;
+    margin-left: 15px;
+}
+.address-main{
+    width: 457px;
+     margin-right: 15px;
+}
+.reset-heading{
+    display: flex;
+    justify-content: space-between;
+}
+.identify-number{
+  width: 700px;
+}
+.mt-27{
+    margin-top: 27px;
+}
+.mobile-number{
+    width: 335px; margin-left: 15px;
+}
+.mobile-label{
+   margin-left: 15px;
+}
+.email-width{
+    width: 335px;
+     margin-right: 15px;
+}
+.w-335{
+    width: 335px;
+}
+.ml-15{
+     margin-left: 15px;
+}

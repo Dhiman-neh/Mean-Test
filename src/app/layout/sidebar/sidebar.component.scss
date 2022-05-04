@@ -19,7 +19,7 @@
     align-items: center;
     justify-content: center;
      &.active{
-        padding: 8px; border: 1px #bcb7b7; border-radius: 8px; background-color: #e9e9e9;
+        padding: 8px; border: 1px $navSelectedColor; border-radius: 8px; background-color: $navSelectedColor;
         img {
             filter: invert(37%) sepia(38%) saturate(2616%) hue-rotate(169deg) brightness(88%) contrast(93%);
         }
@@ -49,7 +49,7 @@
         align-items: center;
         justify-content: center;
          &.active{
-            padding: 8px; border: 1px #bcb7b7; border-radius: 8px; background-color: #e9e9e9;
+            padding: 8px; border: 1px $navSelectedColor; border-radius: 8px; background-color: $navSelectedColor;
              img {
                 filter: invert(37%) sepia(38%) saturate(2616%) hue-rotate(169deg) brightness(88%) contrast(93%);
             }

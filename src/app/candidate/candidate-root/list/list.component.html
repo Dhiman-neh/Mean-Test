@@ -27,11 +27,7 @@
                         (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
                         [aria-label]="checkboxLabel(row)">
                     </mat-checkbox>
-                     <div *ngIf="!allCandidateData" style="width: 20px;
-                    height: 20px;
-                    /* padding: 1px; */
-                    border-radius: 4px;
-                    background-color: #eef2f6;"></div> 
+                     <div *ngIf="!allCandidateData" class="check_load"></div> 
                 </td>
             </ng-container>
 
@@ -41,10 +37,7 @@
                 <td mat-cell *matCellDef="let element"> 
                     <!-- {{element.name}}  -->
                     {{element.firstName}}
-                     <div *ngIf="!allCandidateData" style="width: 147px;
-                    height: 16px;
-                    border-radius: 4px;
-                    background-color: #eef2f6;"></div>  
+                     <div *ngIf="!allCandidateData" class="name-loader"></div>  
                 </td>
             </ng-container>
 
@@ -55,10 +48,7 @@
                 <td mat-cell *matCellDef="let element"> 
                     <!-- {{element.idNumber}}  -->
                     {{element._id}}
-                    <div *ngIf="!allCandidateData" style="width: 137px; 
-                    height: 16px;
-                    border-radius: 4px;
-                    background-color: #eef2f6;"></div>  
+                    <div *ngIf="!allCandidateData" class="id-loader"></div>  
                 </td>
             </ng-container>
 
@@ -70,17 +60,11 @@
                       src="{{ getFlag(element?.address?.country) }}" /> 
                     <!-- {{element.country}}  -->
                     {{element?.address?.country}}
-                <div *ngIf="!allCandidateData" style="
-                    width: 20px;
-                    height: 20px;
-                    border-radius: 34px;
-                    border: solid 1px #eef2f6;
-                    background-color: #eef2f6;"></div>
-                    <div *ngIf="!allCandidateData" style="width: 147px;
-                    height: 16px;
-                    border-radius: 4px;
-                    background-color: #eef2f6;"></div> 
-                   <!-- </div>  -->
+               
+                     <div *ngIf="!allCandidateData" class="location-load">
+                    <div *ngIf="!allCandidateData" class="location-check-load"></div>
+                    <div *ngIf="!allCandidateData" class="location-input"></div>
+                   </div> 
                 </td>
             </ng-container>
 
@@ -89,10 +73,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> EMAIL ADDRESS </th>
                 <td mat-cell *matCellDef="let element"> 
                     {{element.email}} 
-                <div *ngIf="!allCandidateData" style=" width: 180px;
-                    height: 16px;
-                    border-radius: 4px;
-                    background-color: #eef2f6;"></div> 
+                <div *ngIf="!allCandidateData" class="email-loader"></div>
                 </td>
             </ng-container>
 
@@ -101,10 +82,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> MOBILE NUMBER </th>
                 <td mat-cell *matCellDef="let element"> 
                     {{element.mobileNumber}} 
-                     <div *ngIf="!allCandidateData" style="width: 112px;
-                    height: 16px;
-                    border-radius: 4px;
-                    background-color: #eef2f6;"></div> 
+                     <div *ngIf="!allCandidateData" class="mobile-loader"></div>
                 </td>
             </ng-container>
 
@@ -113,10 +91,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> DAYS ACTIVE </th>
                 <td mat-cell *matCellDef="let element" class="daysActive"> 
                     {{element.isActive | daysAgo}} 
-                     <div *ngIf="!allCandidateData" style="width: 66px; 
-                    height: 16px;
-                    border-radius: 4px;
-                    background-color: #eef2f6;"></div>  
+                     <div *ngIf="!allCandidateData" class="days-loader"></div>  
                 </td>
             </ng-container>
 
