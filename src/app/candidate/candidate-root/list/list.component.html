@@ -25,11 +25,7 @@
                         (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
                         [aria-label]="checkboxLabel(row)">
                     </mat-checkbox>
-                    <!-- <div style="width: 20px;
-                    height: 20px;
-                    /* padding: 1px; */
-                    border-radius: 4px;
-                    background-color: #eef2f6;"></div> -->
+                    <!-- <div class="check_load"></div> -->
                 </td>
             </ng-container>
 
@@ -38,10 +34,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
                 <td mat-cell *matCellDef="let element"> 
                     {{element.name}} 
-                    <!-- <div style="width: 147px;
-                    height: 16px;
-                    border-radius: 4px;
-                    background-color: #eef2f6;"></div> -->
+                    <!-- <div class="name-loader"></div> -->
                 </td>
             </ng-container>
 
@@ -51,10 +44,7 @@
                 <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header></th> -->
                 <td mat-cell *matCellDef="let element"> 
                     {{element.idNumber}} 
-                    <!-- <div style="width: 137px;
-                    height: 16px;
-                    border-radius: 4px;
-                    background-color: #eef2f6;"></div> -->
+                    <!-- <div class="id-loader"></div> -->
                 </td>
             </ng-container>
 
@@ -62,19 +52,11 @@
             <ng-container matColumnDef="location">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> LOCATION </th>
                 <td mat-cell *matCellDef="let element"> 
-                    <img style="width: 25px;" src={{element.flag}} />
+                    <img class="flag-img" src={{element.flag}} />
                     {{element.country}} 
                    <!-- <div class="location-load">
-                    <div style="
-                    width: 20px;
-                    height: 20px;
-                    border-radius: 34px;
-                    border: solid 1px #eef2f6;
-                    background-color: #eef2f6;"></div>
-                    <div style="width: 147px;
-                    height: 16px;
-                    border-radius: 4px;
-                    background-color: #eef2f6;"></div>
+                    <div class="location-check-load"></div>
+                    <div class="location-input"></div>
                    </div> -->
                 </td>
             </ng-container>
@@ -84,10 +66,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> EMAIL ADDRESS </th>
                 <td mat-cell *matCellDef="let element"> 
                     {{element.emailAddress}} 
-                    <!-- <div style=" width: 180px;
-                    height: 16px;
-                    border-radius: 4px;
-                    background-color: #eef2f6;"></div> -->
+                    <!-- <div class="email-loader"></div> -->
                 </td>
             </ng-container>
 
@@ -96,10 +75,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> MOBILE NUMBER </th>
                 <td mat-cell *matCellDef="let element"> 
                     {{element.mobileNumber}} 
-                    <!-- <div style="width: 112px;
-                    height: 16px;
-                    border-radius: 4px;
-                    background-color: #eef2f6;"></div> -->
+                    <!-- <div class="mobile-loader"></div> -->
                 </td>
             </ng-container>
 
@@ -108,10 +84,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> DAYS ACTIVE </th>
                 <td mat-cell *matCellDef="let element" class="daysActive"> 
                     {{element.daysActive}} 
-                    <!-- <div style="width: 66px;
-                    height: 16px;
-                    border-radius: 4px;
-                    background-color: #eef2f6;"></div> -->
+                    <!-- <div class="days-loader"></div> -->
                 </td>
             </ng-container>
 

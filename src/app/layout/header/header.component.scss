@@ -8,10 +8,15 @@
   .candidate-search-root {
     @include widthOp(50%);
     @include flexOp(flex, row, false, null, true, center);
-
+      
     .search-input-root {
       @include flexOp(flex, row, false, null, false, null);
       @include widthOp(100%);
+       align-items: center;
+       img{
+        height:16px; 
+        width: 16px;
+       }
       
       .search-icon {
         @include margin(0, 10px, 0, 0);
