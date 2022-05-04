@@ -25,6 +25,7 @@ $invalid: #ea4e2c;
 $mainHeadingFont: "SFProDisplay-Bold";
 $regularFont: "SFProDisplay-Regular";
 $labelFont: "SFProDisplay-Semibold";
+$font-size: 14px;
 
 html,
 body {
@@ -62,7 +63,7 @@ input:focus {
 
 .iti .iti__country-list {
 	box-shadow: none;
-	font-size: 14px;
+	font-size: $font-size;
 	margin-left: 0;
 	width: 300px;
 	max-height: 170px;
@@ -74,8 +75,8 @@ input:focus {
 }
 
 .iti .search-container input {
-	font-size: 14px;
-	border-color: #c7cace;
+	font-size: $font-size;
+	border-color: $border;
 	border-radius: 0;
 	padding: 5px 10px;
 }
@@ -96,7 +97,7 @@ input:focus {
 // }
 
 ngx-intl-tel-input.ng-invalid.ng-touched input {
-	border: 1px solid #c0392b;
+	border: 1px solid $invalid;
 }
 
 // ngx-intl-tel-input input:hover {
@@ -105,7 +106,7 @@ ngx-intl-tel-input.ng-invalid.ng-touched input {
 
 ngx-intl-tel-input input:focus {
 	outline: none !important;
-	border-color: #3498db;
+	border-color: $primaryBlue;
 	box-shadow: 0 0 0 0 #000;
 }
 
@@ -217,5 +218,5 @@ table {
     border: none;
 }
 .iti__selected-flag.dropdown-toggle {
-    border-right: 1px solid #ced4da;
+    border-right: 1px solid $border;
 }
