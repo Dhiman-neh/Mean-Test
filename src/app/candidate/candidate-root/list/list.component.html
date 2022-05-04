@@ -3,7 +3,7 @@
         <div class="candidate-heading">Candidates</div>
         <div class="candidate-operation">
             <div> 
-                <button mat-flat-button class="delete-candidate-btn" [disabled]="selection.hasValue()" (click)="deleteAllCandidates()">Delete</button>
+                <button mat-flat-button class="delete-candidate-btn" [disabled]="!selection.hasValue()" (click)="deleteAllCandidates()">Delete</button>
             </div>
             <div>
                 <button mat-flat-button class="new-candidate-btn" (click)="openDialog()">New Candidate <img src="../../../../assets/icons/icon-phone.svg" /></button>
@@ -116,7 +116,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row class="table-mat-row" *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <!-- <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons
-            aria-label="Select page of periodic elements" (page)="onChangePage($event)"></mat-paginator> -->
+        <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons
+            aria-label="Select page of periodic elements" (page)="onChangePage($event)"></mat-paginator> 
     </div>
 </div>

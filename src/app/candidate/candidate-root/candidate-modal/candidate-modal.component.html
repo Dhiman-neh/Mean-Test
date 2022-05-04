@@ -108,13 +108,12 @@
                         class="candidate-form-label"
                         [ngClass]="{ 'text-danger': f.submitted && (f?.form.controls?.identityNumber?.invalid || !identityNumberCheck) }"
                     >
-                        South African Identity Number
+                    South African Identity Number  
                     </label>
                     <div class="d-flex flex-column">
                         <input 
                             class="form-control identify-number"
                             type="text" 
-                            [ngClass]="{ 'is-invalid': f.submitted && (f?.form.controls?.identityNumber?.invalid || !identityNumberCheck), 'is-valid': f.submitted && (f?.form.controls?.identityNumber?.valid || identityNumberCheck) }" 
                             (keyup)="identityNumberHandler()"
                             id="identityNumber" 
                             placeholder="Identity Number" 
@@ -139,7 +138,7 @@
                     </div>
                     <div class="d-flex">
                         <div >
-                            <input  [(ngModel)]="address1" class="form-control address-main" placeholder="Start typing your address" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
+                            <input  [(ngModel)]="address1" class="form-control address-main" name="address1" placeholder="Start typing your address" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
                             <!-- <input class="form-control" placeholder="Start typing your address" name="address1" [(ngModel)]="address1" /> -->
                         </div>
                         <div >

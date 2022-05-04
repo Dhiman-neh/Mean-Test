@@ -223,6 +223,7 @@ export class ListComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(CandidateModalComponent, {
       height: '754px',
       width: '820px',
+      
       data: {
         candidateData: { element }
       }
