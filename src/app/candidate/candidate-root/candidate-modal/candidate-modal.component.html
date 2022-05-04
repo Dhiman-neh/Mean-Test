@@ -85,7 +85,7 @@
                                 (countryChange)="onCountryChange($event)"
                                 (intlTelInputObject)="telInputObject($event)"
                             /> -->
-                            <ngx-intl-tel-input
+                             <ngx-intl-tel-input
                                 [enableAutoCountrySelect]="true"
                                 [enablePlaceholder]="true"
                                 [searchCountryFlag]="true"
@@ -97,18 +97,24 @@
                                 [separateDialCode]="true"
                                 [numberFormat]="PhoneNumberFormat.National"
                                 name="phone"
+                                [(ngModel)]="phoneNumber"
                             >
                             </ngx-intl-tel-input>
                         </div>
                     </div>
                 </div>
                 <div style="margin-top: 27px;">
-                    <label 
+                    <!-- <label 
                         class="candidate-form-label"
                         [ngClass]="{ 'text-danger': f.submitted && (f?.form.controls?.identityNumber?.invalid || !identityNumberCheck) }"
                     >
                         South African Identity Number
-                    </label>
+                    </label> -->
+                    <label 
+                    class="candidate-form-label"
+                >
+                    South African Identity Number
+                </label>
                     <div style="display: flex; flex-direction: column;">
                         <input 
                             class="form-control"
@@ -122,8 +128,8 @@
                             name="identityNumber"
                             required
                         >
-                            <span class="invalid-text" *ngIf="f.submitted && (f?.form.controls?.identityNumber?.invalid || !identityNumberCheck) && f?.form.controls?.identityNumber?.errors?.required">Required</span>                        
-                            <span class="invalid-text" *ngIf="f.submitted && (f?.form.controls?.identityNumber?.invalid || !identityNumberCheck) && !f?.form.controls?.identityNumber?.errors?.required && !identityNumberCheck">Please enter a valid South African Identity Number</span>                        
+                            <!-- <span class="invalid-text" *ngIf="f.submitted && (f?.form.controls?.identityNumber?.invalid || !identityNumberCheck) && f?.form.controls?.identityNumber?.errors?.required">Required</span>                        
+                            <span class="invalid-text" *ngIf="f.submitted && (f?.form.controls?.identityNumber?.invalid || !identityNumberCheck) && !f?.form.controls?.identityNumber?.errors?.required && !identityNumberCheck">Please enter a valid South African Identity Number</span>                         -->
                          <!-- <div 
                             class="invalid-feedback"
                             *ngIf="f.submitted && (f?.form.controls?.identityNumber?.invalid || !identityNumberCheck)"
@@ -139,7 +145,7 @@
                     </div>
                     <div style="display: flex;">
                         <div style="width: 50%">
-                            <input style="width: 457px; margin-right: 15px;" class="form-control" placeholder="Start typing your address" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
+                            <input style="width: 457px; margin-right: 15px;" class="form-control" placeholder="Start typing your address" name="address1" [(ngModel)]="address1"  ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
                             <!-- <input class="form-control" placeholder="Start typing your address" name="address1" [(ngModel)]="address1" /> -->
                         </div>
                         <div style="width: 50%;">
@@ -203,12 +209,13 @@
             </div>
             <div class="candidate-modal-footer">
                 <div>
-                    <span class="candidate-form-cancel">Cancel</span>
+                    <span class="candidate-form-cancel" (click)="closeDialog()">Cancel</span>
                     <!-- <button mat-button mat-dialog-close type="button">Cancel</button> -->
                 </div>
                 <div>
-                    <button mat-flat-button class="candidate-form-send" type="submit">Save</button>
-                </div>
+                    <button mat-flat-button class="candidate-form-send" type="submit" *ngIf="!editCandidateData" (click)="saveCandidate()">Save</button>
+                    <button mat-flat-button class="candidate-form-send" type="submit" *ngIf="editCandidateData" (click)="updateCandidate()">Update</button>
+                </div> 
             </div>
         </form>
     </div>

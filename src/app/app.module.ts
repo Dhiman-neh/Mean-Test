@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -28,6 +27,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { Ng2TelInputModule } from 'ng2-tel-input';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+// import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
     LayoutComponent,
     HeaderComponent,
     SidebarComponent,
+
     LogoComponent,
     CandidateModalComponent
   ],
@@ -58,9 +59,10 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
     FormsModule,
     MatDividerModule,
     MatSortModule,
+    // ToastrModule.forRoot(), 
     GooglePlaceModule,
     Ng2TelInputModule,
-    NgxIntlTelInputModule
+    NgxIntlTelInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
