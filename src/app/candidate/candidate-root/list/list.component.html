@@ -2,8 +2,8 @@
     <div class="candidate-header mb-4">
         <div class="candidate-heading">Candidates</div>
         <div class="candidate-operation">
-            <div>
-                <button mat-flat-button class="delete-candidate-btn">Delete</button>
+            <div> 
+                <button mat-flat-button class="delete-candidate-btn" [disabled]="selection.hasValue()" (click)="deleteAllCandidates()">Delete</button>
             </div>
             <div>
                 <button mat-flat-button class="new-candidate-btn" (click)="openDialog()">New Candidate <img src="../../../../assets/icons/icon-phone.svg" /></button>
@@ -11,7 +11,9 @@
         </div>
     </div>
     <div class="col-12 candidate-table-root">
-        <table mat-table [dataSource]="dataSource" class="col-12 candidate-table" matSort>
+        <!-- <table mat-table [dataSource]="dataSource" class="col-12 candidate-table" matSort> -->
+            <table mat-table 
+                [dataSource]="allCandidateData" class="col-12 candidate-table" matSort>
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
                 <th mat-header-cell *matHeaderCellDef>
@@ -25,7 +27,7 @@
                         (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
                         [aria-label]="checkboxLabel(row)">
                     </mat-checkbox>
-                    <!-- <div class="check_load"></div> -->
+                     <div *ngIf="!allCandidateData" class="check_load"></div> 
                 </td>
             </ng-container>
 
@@ -33,18 +35,20 @@
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
                 <td mat-cell *matCellDef="let element"> 
-                    {{element.name}} 
-                    <!-- <div class="name-loader"></div> -->
+                    <!-- {{element.name}}  -->
+                    {{element.firstName}}
+                     <div *ngIf="!allCandidateData" class="name-loader"></div>  
                 </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="idNumber">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID NUMBER </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>   ID NUMBER </th>
                 <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header></th> -->
                 <td mat-cell *matCellDef="let element"> 
-                    {{element.idNumber}} 
-                    <!-- <div class="id-loader"></div> -->
+                    <!-- {{element.idNumber}}  -->
+              {{element._id}}
+                    <div *ngIf="!allCandidateData" class="id-loader"></div>  
                 </td>
             </ng-container>
 
@@ -52,12 +56,15 @@
             <ng-container matColumnDef="location">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> LOCATION </th>
                 <td mat-cell *matCellDef="let element"> 
-                    <img class="flag-img" src={{element.flag}} />
-                    {{element.country}} 
-                   <!-- <div class="location-load">
-                    <div class="location-check-load"></div>
-                    <div class="location-input"></div>
-                   </div> -->
+                     <img *ngIf="element?.address?.country" style="width: 25px;"
+                      src="{{ getFlag(element?.address?.country) }}" /> 
+                    <!-- {{element.country}}  -->
+                    {{element?.address?.country}}
+               
+                     <div *ngIf="!allCandidateData" class="location-load">
+                    <div *ngIf="!allCandidateData" class="location-check-load"></div>
+                    <div *ngIf="!allCandidateData" class="location-input"></div>
+                   </div> 
                 </td>
             </ng-container>
 
@@ -65,8 +72,8 @@
             <ng-container matColumnDef="emailAddress">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> EMAIL ADDRESS </th>
                 <td mat-cell *matCellDef="let element"> 
-                    {{element.emailAddress}} 
-                    <!-- <div class="email-loader"></div> -->
+                    {{element.email}} 
+                <div *ngIf="!allCandidateData" class="email-loader"></div>
                 </td>
             </ng-container>
 
@@ -75,7 +82,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> MOBILE NUMBER </th>
                 <td mat-cell *matCellDef="let element"> 
                     {{element.mobileNumber}} 
-                    <!-- <div class="mobile-loader"></div> -->
+                     <div *ngIf="!allCandidateData" class="mobile-loader"></div>
                 </td>
             </ng-container>
 
@@ -83,8 +90,8 @@
             <ng-container matColumnDef="daysActive">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> DAYS ACTIVE </th>
                 <td mat-cell *matCellDef="let element" class="daysActive"> 
-                    {{element.daysActive}} 
-                    <!-- <div class="days-loader"></div> -->
+                    {{element.isActive | daysAgo}} 
+                     <div *ngIf="!allCandidateData" class="days-loader"></div>  
                 </td>
             </ng-container>
 
@@ -96,10 +103,10 @@
                         <mat-icon>more_horiz</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item>
+                        <button mat-menu-item (click)="openDialog(element)">
                             <span>View Candidate</span>
                         </button>
-                        <button mat-menu-item>
+                        <button mat-menu-item (click)="deleteCandidate(element)">
                             <span>Delete Candidate</span>
                         </button>
                     </mat-menu>
@@ -109,7 +116,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row class="table-mat-row" *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-            aria-label="Select page of periodic elements"></mat-paginator>
+        <!-- <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons
+            aria-label="Select page of periodic elements" (page)="onChangePage($event)"></mat-paginator> -->
     </div>
 </div>
