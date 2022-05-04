@@ -116,7 +116,9 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row class="table-mat-row" *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons
+        <mat-paginator [length]="totalCount"
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons
             aria-label="Select page of periodic elements" (page)="onChangePage($event)"></mat-paginator> 
     </div>
 </div>

@@ -1,13 +1,13 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource } from '@angular/material/table';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CandidateModalComponent } from '../candidate-modal/candidate-modal.component';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Apollo, gql, QueryRef } from 'apollo-angular';
 import { Subscription } from 'rxjs';
 import { countries } from 'src/shared/countries';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { CandidateModalComponent } from '../candidate-modal/candidate-modal.component';
 
 export interface PeriodicElement {
   name: string;
@@ -39,7 +39,7 @@ const REMOVE_ALL_CANDIDATE = gql`
     removeMultipleCandidate(id: $id) 
   }`
 
-const GET_CANDIDATE_LISTING  =  gql`
+const GET_CANDIDATE_LISTING = gql`
       {
         findAllCandidate(
           filter :{limit:10, page:1}) {
@@ -70,42 +70,87 @@ const GET_CANDIDATE_LISTING  =  gql`
       }
     `
 
+
+
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit, AfterViewInit {
- todayDate=new Date();
+  todayDate = new Date();
   selectedAllIds: any = [];
   private querySubscription: Subscription
   commonMatchId: any = [];
-  constructor(public dialog: MatDialog, private apollo: Apollo, 
-    ) { }
+  totalCount: any;
+  constructor(public dialog: MatDialog, private apollo: Apollo,
+  ) { }
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns: string[] = ['select', 'name', 'idNumber', 'location', 'emailAddress', 'mobileNumber', 'daysActive', 'action'];
   allCandidateData = new MatTableDataSource<any>(ELEMENT_DATA);
   selection = new SelectionModel<any>(true, []);
   postsQuery: QueryRef<any>;
-  daysActive:any=[]
+  daysActive: any = []
+
   ngOnInit(): void {
+    this.getCandidateList(10,1)
+
+  }
+  getCandidateList(limitValue, pageValue) {
     this.postsQuery = this.apollo.watchQuery<any>({
-      query: GET_CANDIDATE_LISTING,
+      variables: { limit: limitValue, page: pageValue },
+      query: gql`
+      query findAllCandidate($limit: Int!, $page: Int!) {
+        findAllCandidate(
+          filter :{limit:$limit, page:$page}) {
+          candidate{
+            _id
+            address{
+              addressLine1
+              addressLine2
+              city
+              country
+              postalCode
+              province
+            }
+            email
+            firstName
+            identityNumber
+            isActive
+            lastName
+            mobileNumber
+            socialMediaLinks{
+              facebook
+              linkedIn
+              twitter
+            } 
+          }
+          totalCount
+        }
+      }
+    `,
+    
     });
-    this.querySubscription =this.postsQuery
+    this.querySubscription = this.postsQuery
       .valueChanges
       .subscribe(({ data, loading }) => {
         this.allCandidateData.data = data?.findAllCandidate.candidate;
-        console.log("Candidate Data",this.allCandidateData);
-        this.daysActive=data?.findAllCandidate.candidate.isActive;
+        this.totalCount = data?.findAllCandidate.totalCount;
+
+        console.log("Candidate Data", this.allCandidateData);
+        this.daysActive = data?.findAllCandidate.candidate.isActive;
         this.countryFlagForListHandler(this.allCandidateData.data);
       });
   }
 
   onChangePage(pe: PageEvent) {
-    console.log(pe.pageIndex);
-    console.log(pe.pageSize);
+    // console.log(pe.pageIndex);
+    // console.log(pe.pageSize);
+
+    this.getCandidateList(pe.pageSize,pe.pageIndex + 1)
+
   }
 
   ngAfterViewInit() {
@@ -152,8 +197,8 @@ export class ListComponent implements OnInit, AfterViewInit {
     this.selectedAllIds = this.allCandidateData.data.map(item => {
       return item._id
     })
-    console.log(this.selectedAllIds)
-    console.log(numRows)
+    // console.log(this.selectedAllIds)
+    // console.log(numRows)
     return numSelected === numRows;
   }
 
@@ -223,7 +268,7 @@ export class ListComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(CandidateModalComponent, {
       height: '754px',
       width: '820px',
-      
+
       data: {
         candidateData: { element }
       }
