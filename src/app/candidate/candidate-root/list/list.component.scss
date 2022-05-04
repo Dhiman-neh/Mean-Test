@@ -1,44 +1,93 @@
 @import "../../../../styles.scss";
 
 .candidate-main {
-    @include flexOp(flex, column, false, null, false, null);
-    @include padding(2rem, 3rem, 0, 3rem);
-    height: 100%;
+  @include flexOp(flex, column, false, null, false, null);
+  @include padding(2rem, 3rem, 0, 3rem);
+  height: 100%;
 
-    .candidate-header {
-        @include flexOp(flex, row, false, null, false, null);
+  .candidate-header {
+    @include flexOp(flex, row, false, null, false, null);
 
-        .candidate-heading {
-            @include fontOp(xx-large, black, 800, $mainHeadingFont);
-            @include widthOp(50%);
-        }
-
-        .candidate-operation {
-            @include widthOp(50%);
-            @include flexOp(flex, row, true, flex-end, true, center);
-
-            .new-candidate-btn {
-                background-color: $primaryBlue;
-                color: $primaryWhite;
-                margin-left: 1rem;
-            }
-        }
+    .candidate-heading {
+      @include fontOp(xx-large, black, 800, $mainHeadingFont);
+      @include widthOp(50%);
     }
 
-    .candidate-table-root {
-        height: 90%;
+    .candidate-operation {
+      @include widthOp(50%);
+      @include flexOp(flex, row, true, flex-end, true, center);
 
-        .candidate-table {
-            border: solid #e9e9e9 1px;
-            height: 90%;
-    
-            .daysActive {
-                color: $daysGreen;
-            }
-    
-            .table-mat-row {
-                height: 55px;
-            }
+      .delete-candidate-btn {
+        width: 68px;
+        height: 40px;
+        border-radius: 4px;
+        background-color: #eef2f6;
+      }
+
+      .new-candidate-btn {
+        background-color: $primaryBlue;
+        color: $primaryWhite;
+        margin-left: 1rem;
+        img {
+          width: 22px;
+          height: 22px;
+          object-fit: contain;
         }
+
+      }
     }
+  }
+
+  .candidate-table-root {
+    height: 90%;
+
+    .candidate-table {
+      border: solid #e9e9e9 1px;
+      table-layout: fixed;
+
+      td.mat-cell {
+        img {
+          margin-right: 10px;
+        }
+      }
+      th.mat-header-cell:first-of-type,
+      td.mat-cell:first-of-type,
+      td.mat-footer-cell:first-of-type {
+
+        width: 35px;
+      }
+
+      th.mat-header-cell:last-of-type,
+      td.mat-cell:last-of-type,
+      td.mat-footer-cell:last-of-type {
+        padding: 0;
+        padding-left: 0 !important;
+        padding-right: 2px !important;
+        width: 57px !important;
+      }
+      .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background, .mat-checkbox-checked.mat-primary .mat-checkbox-background {
+        background-color: #3fa6d9;
+    }
+
+      th.mat-header-cell,
+      td.mat-cell,
+      td.mat-footer-cell {
+        padding-left: 18px;
+      }
+
+      .location-load {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .daysActive {
+        color: $daysGreen;
+      }
+
+      .table-mat-row {
+        height: 55px;
+      }
+    }
+  }
 }

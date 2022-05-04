@@ -3,10 +3,10 @@
         <div class="candidate-heading">Candidates</div>
         <div class="candidate-operation">
             <div> 
-                <button mat-flat-button (click)="deleteAllCandidates()">Delete</button>
+                <button mat-flat-button class="delete-candidate-btn" [disabled]="selection.hasValue()" (click)="deleteAllCandidates()">Delete</button>
             </div>
             <div>
-                <button mat-flat-button class="new-candidate-btn" (click)="openDialog()">New Candidate +</button>
+                <button mat-flat-button class="new-candidate-btn" (click)="openDialog()">New Candidate <img src="../../../../assets/icons/icon-phone.svg" /></button>
             </div>
         </div>
     </div>
@@ -27,11 +27,11 @@
                         (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
                         [aria-label]="checkboxLabel(row)">
                     </mat-checkbox>
-                    <div style="width: 20px;
+                     <div *ngIf="!allCandidateData" style="width: 20px;
                     height: 20px;
-                    padding: 1px;
+                    /* padding: 1px; */
                     border-radius: 4px;
-                    background-color: #eef2f6;"></div>
+                    background-color: #eef2f6;"></div> 
                 </td>
             </ng-container>
 
@@ -41,11 +41,10 @@
                 <td mat-cell *matCellDef="let element"> 
                     <!-- {{element.name}}  -->
                     {{element.firstName}}
-                    <div style="width: 147px;
+                     <div *ngIf="!allCandidateData" style="width: 147px;
                     height: 16px;
-                    margin: 43px 36px 24px 17px;
                     border-radius: 4px;
-                    background-color: #eef2f6;"></div>
+                    background-color: #eef2f6;"></div>  
                 </td>
             </ng-container>
 
@@ -56,11 +55,10 @@
                 <td mat-cell *matCellDef="let element"> 
                     <!-- {{element.idNumber}}  -->
                     {{element._id}}
-                    <div style="width: 137px;
+                    <div *ngIf="!allCandidateData" style="width: 137px; 
                     height: 16px;
-                    margin: 43px 17px 24px 36px;
                     border-radius: 4px;
-                    background-color: #eef2f6;"></div>
+                    background-color: #eef2f6;"></div>  
                 </td>
             </ng-container>
 
@@ -72,19 +70,17 @@
                       src="{{ getFlag(element?.address?.country) }}" /> 
                     <!-- {{element.country}}  -->
                     {{element?.address?.country}}
-                    <div style="
+                <div *ngIf="!allCandidateData" style="
                     width: 20px;
                     height: 20px;
-                    margin: 41px 5px 22px 17px;
-                    padding: 18px 0 0;
-                    border-radius: 4px;
-                    border: solid 1px #e9edf1;
-                    background-color: #fff;"></div>
-                    <div style="width: 147px;
-                    height: 16px;
-                    margin: 43px 80px 24px 5px;
-                    border-radius: 4px;
+                    border-radius: 34px;
+                    border: solid 1px #eef2f6;
                     background-color: #eef2f6;"></div>
+                    <div *ngIf="!allCandidateData" style="width: 147px;
+                    height: 16px;
+                    border-radius: 4px;
+                    background-color: #eef2f6;"></div> 
+                   <!-- </div>  -->
                 </td>
             </ng-container>
 
@@ -93,11 +89,10 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> EMAIL ADDRESS </th>
                 <td mat-cell *matCellDef="let element"> 
                     {{element.email}} 
-                    <div style=" width: 180px;
+                <div *ngIf="!allCandidateData" style=" width: 180px;
                     height: 16px;
-                    margin: 43px 50px 24px 80px;
                     border-radius: 4px;
-                    background-color: #eef2f6;"></div>
+                    background-color: #eef2f6;"></div> 
                 </td>
             </ng-container>
 
@@ -106,11 +101,10 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> MOBILE NUMBER </th>
                 <td mat-cell *matCellDef="let element"> 
                     {{element.mobileNumber}} 
-                    <div style="width: 112px;
+                     <div *ngIf="!allCandidateData" style="width: 112px;
                     height: 16px;
-                    margin: 43px 40px 24px 50px;
                     border-radius: 4px;
-                    background-color: #eef2f6;"></div>
+                    background-color: #eef2f6;"></div> 
                 </td>
             </ng-container>
 
@@ -118,13 +112,11 @@
             <ng-container matColumnDef="daysActive">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> DAYS ACTIVE </th>
                 <td mat-cell *matCellDef="let element" class="daysActive"> 
-                    <!-- {{element.daysActive}}  -->
-                    4
-                    <div style="width: 66px;
+                    {{element.isActive | timeAgo}} 
+                     <div *ngIf="!allCandidateData" style="width: 66px; 
                     height: 16px;
-                    margin: 43px 147px 24px 41px;
                     border-radius: 4px;
-                    background-color: #eef2f6;"></div>
+                    background-color: #eef2f6;"></div>  
                 </td>
             </ng-container>
 
