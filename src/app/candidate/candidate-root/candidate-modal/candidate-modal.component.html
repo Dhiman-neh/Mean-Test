@@ -13,7 +13,7 @@
                         Full Name
                     </label>
                     <div class="candidate-form-firstname-root">
-                        <div class="firstname-input-div">
+                        <div class="w-50 firstname-input-div">
                             <input 
                                 name="firstName" 
                                 id="firstName" 
@@ -28,7 +28,7 @@
                             <span class="invalid-text" *ngIf="f.submitted && f.form.controls.firstName.invalid && f.form.controls.firstName.errors.required">Required</span>                        
                             <span class="invalid-text" *ngIf="f.submitted && f.form.controls.firstName.invalid && f.form.controls.firstName.errors.minlength">Min. 2 characters required</span>                        
                         </div>
-                        <div style=" margin-left: 15px;">
+                        <div style="width: 50%; margin-left: 15px;">
                             <input 
                                 class="form-control" 
                                 style="width: 335px;"
@@ -54,11 +54,11 @@
                         >
                             Email Address
                         </label>
-                        <div>
+                        <div style="width: 50%; margin-right: 15px;">
                             <!-- [ngClass]="{ 'is-invalid': f.submitted && emailAddress.invalid }"  -->
                             <input 
-                                class="form-control" 
-                                style="width: 335px; margin-right: 15px;"
+                                class="form-control"  
+                                style="width: 335px;"
                                 type="text" 
                                 [ngClass]="{ 'is-invalid': f.submitted && f?.form.controls?.emailAddress?.invalid, 'is-valid': f.submitted && f?.form.controls?.emailAddress?.valid }" 
                                 id="emailAddress" 
@@ -116,9 +116,11 @@
                     South African Identity Number
                 </label>
                     <div style="display: flex; flex-direction: column;">
-                        <input style="width: 700px;"
+                        <input 
                             class="form-control"
+                            style="width: 700px;"
                             type="text" 
+                            [ngClass]="{ 'is-invalid': f.submitted && (f?.form.controls?.identityNumber?.invalid || !identityNumberCheck), 'is-valid': f.submitted && (f?.form.controls?.identityNumber?.valid || identityNumberCheck) }" 
                             (keyup)="identityNumberHandler()"
                             id="identityNumber" 
                             placeholder="Identity Number" 
@@ -137,23 +139,23 @@
                 </div>
                 <mat-divider style="margin-top: 46px; margin-bottom: 30px;"></mat-divider>
                 <div>
-                    <div style="display: flex;justify-content: space-between;">
+                    <div style="display: flex;">
                         <p class="candidate-form-label">Physical Address</p>
                         <p class="candidate-form-reset">Reset</p>
                     </div>
                     <div style="display: flex;">
-                        <div>
+                        <div style="width: 50%">
                             <input style="width: 457px; margin-right: 15px;" class="form-control" placeholder="Start typing your address" name="address1" [(ngModel)]="address1"  ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
                             <!-- <input class="form-control" placeholder="Start typing your address" name="address1" [(ngModel)]="address1" /> -->
                         </div>
-                        <div >
+                        <div style="width: 50%;">
                             <select style="width: 213px; margin-left: 15px;" class="form-select" placeholder="Country" [(ngModel)]="country" name="country" (ngModelChange)="countryChangeHandler($event)">
                                 <option value="country" hidden>Country</option>
                                 <option *ngFor="let country of countriesList">{{country.name}}</option>
                             </select>
                         </div>
                     </div>
-                    <div style="margin-top: 18px; width: 700px; margin-bottom: 18px;" >
+                    <div>
                         <input class="form-control" placeholder="Address line 2 (Optional)" [(ngModel)]="address2" name="address2" />
                     </div>
                     <div style="display: flex; width: 100%;">
@@ -178,7 +180,7 @@
                         </div>
                     </div>
                 </div>
-                <mat-divider style="margin-top: 46px; margin-bottom: 30px;"></mat-divider>
+                <mat-divider></mat-divider>
                 <div class="mt-3">
                     <label class="candidate-form-label">Social Media Profiles</label>
                     <div class="row mb-3">

@@ -4,7 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { CandidateModalComponent } from '../candidate-modal/candidate-modal.component';
 import { MatSort, Sort } from '@angular/material/sort';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo, gql, QueryRef } from 'apollo-angular';
+import { Subscription } from 'rxjs';
 import { countries } from 'src/shared/countries';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
@@ -17,7 +18,6 @@ export interface PeriodicElement {
   daysActive: string;
   country: string;
 }
-
 const ELEMENT_DATA: PeriodicElement[] = [
   { name: 'User 1', idNumber: '7589114587987', location: 'Centurion, South Africa', emailAddress: 'greg1@hellocrowd.net', mobileNumber: '+27 82 801 4085', daysActive: '< 30 days', country: 'India', },
   { name: 'User 2', idNumber: '7589256987452', location: 'Centurion, South Africa', emailAddress: 'greg3@hellocrowd.net', mobileNumber: '+27 82 801 4085', daysActive: '< 30 days', country: 'Zimbabwe', },
@@ -34,20 +34,41 @@ const REMOVE_CANDIDATE = gql`
 mutation removeCandidate($id:String!) {
   removeCandidate(id:$id)
 }`
-
 const REMOVE_ALL_CANDIDATE = gql`
   mutation removeMultipleCandidate($id: [String!]!) {
     removeMultipleCandidate(id: $id) 
   }`
 
-// const REMOVE_ALL_CANDIDATE = gql`
-//     mutation removeMultipleCandidate($id: String!){
-//       removeMultipleCandidate([id: $id]){
-//        message,
-//        success
-//       }
-//     }
-//     `;
+const GET_CANDIDATE_LISTING  =  gql`
+      {
+        findAllCandidate(
+          filter :{limit:10, page:1}) {
+          candidate{
+            _id
+            address{
+              addressLine1
+              addressLine2
+              city
+              country
+              postalCode
+              province
+            }
+            email
+            firstName
+            identityNumber
+            isActive
+            lastName
+            mobileNumber
+            socialMediaLinks{
+              facebook
+              linkedIn
+              twitter
+            } 
+          }
+          totalCount
+        }
+      }
+    `
 
 @Component({
   selector: 'app-list',
@@ -55,17 +76,31 @@ const REMOVE_ALL_CANDIDATE = gql`
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit, AfterViewInit {
+ todayDate=new Date();
   selectedAllIds: any = [];
-  commonMatchId: any = []
-  constructor(public dialog: MatDialog, private apollo: Apollo) { }
+  private querySubscription: Subscription
+  commonMatchId: any = [];
+  constructor(public dialog: MatDialog, private apollo: Apollo, 
+    ) { }
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns: string[] = ['select', 'name', 'idNumber', 'location', 'emailAddress', 'mobileNumber', 'daysActive', 'action'];
   allCandidateData = new MatTableDataSource<any>(ELEMENT_DATA);
   selection = new SelectionModel<any>(true, []);
-
+  postsQuery: QueryRef<any>;
+  daysActive:any=[]
   ngOnInit(): void {
-    this.candidateList();
+    this.postsQuery = this.apollo.watchQuery<any>({
+      query: GET_CANDIDATE_LISTING,
+    });
+    this.querySubscription =this.postsQuery
+      .valueChanges
+      .subscribe(({ data, loading }) => {
+        this.allCandidateData.data = data?.findAllCandidate.candidate;
+        console.log("Candidate Data",this.allCandidateData);
+        this.daysActive=data?.findAllCandidate.candidate.isActive;
+        this.countryFlagForListHandler(this.allCandidateData.data);
+      });
   }
 
   onChangePage(pe: PageEvent) {
@@ -75,48 +110,6 @@ export class ListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.allCandidateData.sort = this.sort;
-  }
-
-  candidateList() {
-    this.apollo
-      .watchQuery({
-        query:
-          gql`
-        {
-          findAllCandidate(
-            filter :{limit:10, page:1}) {
-            candidate{
-              _id
-              address{
-                addressLine1
-                addressLine2
-                city
-                country
-                postalCode
-                province
-              }
-              email
-              firstName
-              identityNumber
-              isActive
-              lastName
-              mobileNumber
-              socialMediaLinks{
-                facebook
-                linkedIn
-                twitter
-              } 
-            }
-            totalCount
-          }
-        }
-      `,
-      })
-      .valueChanges.subscribe((result: any) => {
-        this.allCandidateData.data = result?.data?.findAllCandidate.candidate;
-        console.log(this.allCandidateData);
-        this.countryFlagForListHandler(this.allCandidateData.data);
-      });
   }
 
   countryFlagForListHandler(list) {
@@ -141,6 +134,7 @@ export class ListComponent implements OnInit, AfterViewInit {
     })
     return foundLink;
   }
+
   getFlag(countryName) {
     let foundLink = '';
     countries.forEach(country => {
@@ -201,16 +195,9 @@ export class ListComponent implements OnInit, AfterViewInit {
             id: element._id,
           }
         }).subscribe((data) => {
-          console.log(data)
-          
-          this.candidateList()
-          //  this.candidateList();
-          // if (data.data['removeCandidate'] == "Candidate deleted successfully") {
-            var index = this.allCandidateData.data.map(x => {
-              return x._id;
-            }).indexOf(element._id);
-            this.allCandidateData.data.splice(index, 1);
-          // }
+          console.log(data);
+          this.postsQuery.refetch()
+          location.reload()
         }, (error) => {
           console.log('there was an error sending the query', error);
         });
@@ -226,30 +213,17 @@ export class ListComponent implements OnInit, AfterViewInit {
         }
       }).subscribe((data) => {
         console.log(data)
+        location.reload();
       }, (error) => {
         console.log('there was an error sending the query', error);
       });
   }
 
-  // openDialog() {
-  //   debugger
-  //   const dialogRef = this.dialog.open(CandidateModalComponent, {
-  //     height: '754px',
-  //     width: '800px',
-  //     // data: {
-  //     //   candidateData: { name: 'candidate' }
-  //     // }
-  //   });
-
-  //   // dialogRef.afterClosed().subscribe(result => {
-  //     // console.log(`Dialog result: ${result}`);
-  //   // });
-  // }
-
   openDialog(element?) {
     const dialogRef = this.dialog.open(CandidateModalComponent, {
       height: '754px',
       width: '800px',
+      
       data: {
         candidateData: { element }
       }

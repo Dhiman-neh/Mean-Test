@@ -28,7 +28,8 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { Ng2TelInputModule } from 'ng2-tel-input';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 // import { ToastrModule } from 'ngx-toastr';
-
+// import {TimeAgoPipe} from 'time-ago-pipe';
+import { DaysAgoPipe } from './days-ago.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,9 +39,10 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
     LayoutComponent,
     HeaderComponent,
     SidebarComponent,
-
+    // TimeAgoPipe,
     LogoComponent,
-    CandidateModalComponent
+    CandidateModalComponent,
+    DaysAgoPipe
   ],
   imports: [
     BrowserModule,
