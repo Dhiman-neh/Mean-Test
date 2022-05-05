@@ -95,7 +95,7 @@ export class ListComponent implements OnInit, AfterViewInit {
   daysActive: any = []
 
   ngOnInit(): void {
-    this.getCandidateList(10,1)
+    this.getCandidateList(10, 1)
 
   }
   getCandidateList(limitValue, pageValue) {
@@ -131,7 +131,7 @@ export class ListComponent implements OnInit, AfterViewInit {
         }
       }
     `,
-    
+
     });
     this.querySubscription = this.postsQuery
       .valueChanges
@@ -148,7 +148,7 @@ export class ListComponent implements OnInit, AfterViewInit {
   onChangePage(pe: PageEvent) {
     // console.log(pe.pageIndex);
     // console.log(pe.pageSize);
-    this.getCandidateList(pe.pageSize,pe.pageIndex + 1)
+    this.getCandidateList(pe.pageSize, pe.pageIndex + 1)
   }
 
   ngAfterViewInit() {
@@ -192,24 +192,50 @@ export class ListComponent implements OnInit, AfterViewInit {
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.allCandidateData.data.length;
-    this.selectedAllIds = this.allCandidateData.data.map(item => {
-      return item._id
-    })
-    // console.log(this.selectedAllIds)
-    // console.log(numRows)
+
     return numSelected === numRows;
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle(isAllSelect, row?) {
     let selectedArray = this.selection.selected;
-    debugger
-    if (this.isAllSelected()) {
-      this.selection.clear();
-      return;
+
+    if (isAllSelect) {
+      if (this.isAllSelected()) {
+        this.selection.clear();
+        this.selectedAllIds = []
+        return;
+      }
+      else{
+        this.selection.select(...this.allCandidateData.data);
+      }
     }
-    this.selection.select(...this.allCandidateData.data);
-    console.log("Selected", this.selection.select(...this.allCandidateData.data))
+    else {
+      let selection = this.selection;
+      let alreadySelected = selection.selected;
+
+      let isAlreadyExist = alreadySelected.filter(item => {
+        if (item._id == row._id) {
+          return item;
+        }
+      })
+
+      if (isAlreadyExist && isAlreadyExist.length > 0) {
+        this.selection.deselect(row);
+      }
+      else {
+        this.selection.select(row);
+      }
+    }
+
+    let selection1 = this.selection;
+    let alreadySelected2 = selection1.selected;
+
+    this.selectedAllIds = alreadySelected2.map(item => {
+      return item._id
+    })
+   
+
   }
 
   /** The label for the checkbox on the passed row */
