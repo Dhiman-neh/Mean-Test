@@ -352,7 +352,6 @@ export class CandidateModalComponent implements OnInit {
       alert("Please enter 13 digit valid identity Number")
     }
     else {
-      debugger
       this.apollo
         .mutate({
           mutation: CREATE_CANDIDATE,

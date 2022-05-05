@@ -148,9 +148,7 @@ export class ListComponent implements OnInit, AfterViewInit {
   onChangePage(pe: PageEvent) {
     // console.log(pe.pageIndex);
     // console.log(pe.pageSize);
-
     this.getCandidateList(pe.pageSize,pe.pageIndex + 1)
-
   }
 
   ngAfterViewInit() {
@@ -203,7 +201,9 @@ export class ListComponent implements OnInit, AfterViewInit {
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
+  masterToggle(isAllSelect, row?) {
+    let selectedArray = this.selection.selected;
+    debugger
     if (this.isAllSelected()) {
       this.selection.clear();
       return;
