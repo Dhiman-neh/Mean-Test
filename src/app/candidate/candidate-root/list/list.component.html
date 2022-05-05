@@ -2,25 +2,24 @@
     <div class="candidate-header mb-4">
         <div class="candidate-heading">Candidates</div>
         <div class="candidate-operation">
-            <div> 
-                <button mat-flat-button class="delete-candidate-btn" [disabled]="!selection.hasValue()" (click)="deleteAllCandidates()">Delete</button>
+            <div>
+                <button mat-flat-button class="delete-candidate-btn" [disabled]="!selection.hasValue()"
+                    (click)="deleteAllCandidates()">Delete</button>
             </div>
             <div>
-                <button mat-flat-button class="new-candidate-btn" (click)="openDialog()">New Candidate <img src="../../../../assets/icons/icon-phone.svg" /></button>
+                <button mat-flat-button class="new-candidate-btn" (click)="openDialog()">New Candidate <img
+                        src="../../../../assets/icons/icon-phone.svg" /></button>
             </div>
         </div>
     </div>
     <div class="col-12 candidate-table-root">
-        <!-- <table mat-table [dataSource]="dataSource" class="col-12 candidate-table" matSort> -->
-            <table mat-table 
-                [dataSource]="allCandidateData" class="col-12 candidate-table" matSort>
+        <table mat-table [dataSource]="allCandidateData" class="col-12 candidate-table" matSort>
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
                 <th mat-header-cell *matHeaderCellDef>
                     <mat-checkbox color="primary" (change)="$event ? masterToggle(true) : null"
                         [checked]="selection.hasValue() && isAllSelected()"
-                        [indeterminate]="selection.hasValue() && !isAllSelected()"
-                         [aria-label]="checkboxLabel()">
+                        [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
                     </mat-checkbox>
                 </th>
                 <td mat-cell *matCellDef="let row">
@@ -28,71 +27,68 @@
                         (change)="$event ? masterToggle(false, row) : null" [checked]="selection.isSelected(row)"
                         [aria-label]="checkboxLabel(row)">
                     </mat-checkbox>
-                     <div *ngIf="!allCandidateData" class="check_load"></div> 
+                    <div *ngIf="!allCandidateData" class="check_load"></div>
                 </td>
             </ng-container>
 
             <!-- Position Column -->
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
-                <td mat-cell *matCellDef="let element"> 
+                <td mat-cell *matCellDef="let element">
                     <!-- {{element.name}}  -->
                     {{element.firstName}}
-                     <div *ngIf="!allCandidateData" class="name-loader"></div>  
+                    <div *ngIf="!allCandidateData" class="name-loader"></div>
                 </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="idNumber">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>   ID NUMBER </th>
-                <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header></th> -->
-                <td mat-cell *matCellDef="let element"> 
-                    <!-- {{element.idNumber}}  -->
-              {{element._id}}
-                    <div *ngIf="!allCandidateData" class="id-loader"></div>  
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID NUMBER </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element._id}}
+                    <div *ngIf="!allCandidateData" class="id-loader"></div>
                 </td>
             </ng-container>
 
             <!-- Weight Column -->
             <ng-container matColumnDef="location">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> LOCATION </th>
-                <td mat-cell *matCellDef="let element"> 
-                     <img *ngIf="element?.address?.country" style="width: 25px;"
-                      src="{{ getFlag(element?.address?.country) }}" /> 
-                    <!-- {{element.country}}  -->
+                <td mat-cell *matCellDef="let element">
+                    <img *ngIf="element?.address?.country" style="width: 25px;"
+                        src="{{ getFlag(element?.address?.country) }}" />
                     {{element?.address?.country}}
-               
-                     <div *ngIf="!allCandidateData" class="location-load">
-                    <div *ngIf="!allCandidateData" class="location-check-load"></div>
-                    <div *ngIf="!allCandidateData" class="location-input"></div>
-                   </div> 
+
+                    <div *ngIf="!allCandidateData" class="location-load">
+                        <div *ngIf="!allCandidateData" class="location-check-load"></div>
+                        <div *ngIf="!allCandidateData" class="location-input"></div>
+                    </div>
                 </td>
             </ng-container>
 
             <!-- Symbol Column -->
             <ng-container matColumnDef="emailAddress">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> EMAIL ADDRESS </th>
-                <td mat-cell *matCellDef="let element"> 
-                    {{element.email}} 
-                <div *ngIf="!allCandidateData" class="email-loader"></div>
+                <td mat-cell *matCellDef="let element">
+                    {{element.email}}
+                    <div *ngIf="!allCandidateData" class="email-loader"></div>
                 </td>
             </ng-container>
 
             <!-- Symbol Column -->
             <ng-container matColumnDef="mobileNumber">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> MOBILE NUMBER </th>
-                <td mat-cell *matCellDef="let element"> 
-                    {{element.mobileNumber}} 
-                     <div *ngIf="!allCandidateData" class="mobile-loader"></div>
+                <td mat-cell *matCellDef="let element">
+                    {{element.mobileNumber}}
+                    <div *ngIf="!allCandidateData" class="mobile-loader"></div>
                 </td>
             </ng-container>
 
             <!-- Symbol Column -->
             <ng-container matColumnDef="daysActive">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> DAYS ACTIVE </th>
-                <td mat-cell *matCellDef="let element" class="daysActive"> 
-                    {{element.isActive | daysAgo}} 
-                     <div *ngIf="!allCandidateData" class="days-loader"></div>  
+                <td mat-cell *matCellDef="let element" class="daysActive">
+                    {{element.isActive | daysAgo}}
+                    <div *ngIf="!allCandidateData" class="days-loader"></div>
                 </td>
             </ng-container>
 
@@ -117,9 +113,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row class="table-mat-row" *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <mat-paginator [length]="totalCount"
-        [pageSize]="10"
-        [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons
-            aria-label="Select page of periodic elements" (page)="onChangePage($event)"></mat-paginator> 
+        <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons
+            aria-label="Select page of periodic elements" (page)="onChangePage($event)"></mat-paginator>
     </div>
 </div>

@@ -68,9 +68,7 @@ const GET_CANDIDATE_LISTING = gql`
           totalCount
         }
       }
-    `
-
-
+    `;
 
 
 @Component({
@@ -96,8 +94,9 @@ export class ListComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getCandidateList(10, 1)
-
   }
+
+  // getting list of all candidates
   getCandidateList(limitValue, pageValue) {
     this.postsQuery = this.apollo.watchQuery<any>({
       variables: { limit: limitValue, page: pageValue },
@@ -146,8 +145,6 @@ export class ListComponent implements OnInit, AfterViewInit {
   }
 
   onChangePage(pe: PageEvent) {
-    // console.log(pe.pageIndex);
-    // console.log(pe.pageSize);
     this.getCandidateList(pe.pageSize, pe.pageIndex + 1)
   }
 
@@ -157,14 +154,9 @@ export class ListComponent implements OnInit, AfterViewInit {
 
   countryFlagForListHandler(list) {
     list.forEach(val => {
-      // list.data.forEach(val => {
-      // val.flag = findFlagUrlByCountryName(val.country);
-      // val.flag = "../../../../assets/flags/AD.svg";
-      // val.flag = this.countryFlagHandler(val);
       val.flag = this.countryFlagHandler(val);
     })
     console.log('list : ', list.data)
-    // this.dataSource = new MatTableDataSource<PeriodicElement>(list);
     this.idNumberHandler(list);
   }
 

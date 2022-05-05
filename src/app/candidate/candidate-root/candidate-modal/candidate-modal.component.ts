@@ -162,7 +162,7 @@ export class CandidateModalComponent implements OnInit {
   editCandidateData: any;
   @ViewChild('placesRef') placesRef: GooglePlaceDirective;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private matDialog: MatDialog,private apollo: Apollo, private googleAddressService: GoogleAddressService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private matDialog: MatDialog, private apollo: Apollo, private googleAddressService: GoogleAddressService) {
     console.log('DATA : ', data.candidateData.element)
     this.editCandidateData = data.candidateData.element
   }
@@ -222,7 +222,6 @@ export class CandidateModalComponent implements OnInit {
     console.log('COUNTRY CHANGE:  ', e);
     let replaced = e.split(' ').join('').toLowerCase();
     console.log('REPLACED : : : ', replaced);
-    // this.countryISOHandler(replaced);
     let countryISOFind = countryISOFindHandler(replaced);
     this.selectedPhoneCountry = countryISOFind;
     console.log('COUNTRY LIST : ', this.countriesList)
@@ -243,7 +242,6 @@ export class CandidateModalComponent implements OnInit {
                 .then(ipData => {
                   let code = ipData.country_name.replace(' ', '').toLowerCase();
                   this.selectedPhoneCountry = CountryISO.SouthAfrica;
-                  // this.countryISOHandler(code);
                   let countryISOFind = countryISOFindHandler(code);
                   this.selectedPhoneCountry = countryISOFind;
                 })
@@ -382,7 +380,7 @@ export class CandidateModalComponent implements OnInit {
     }
   }
 
-  closeDialog(){
+  closeDialog() {
     this.matDialog.closeAll();
   }
 
@@ -411,9 +409,7 @@ export class CandidateModalComponent implements OnInit {
             linkedIn: this.linkedInProfile,
             twitter: this.twitterProfile
           }
-          // variables:userData
         }).subscribe((data) => {
-          // console.log(data)
           this.matDialog.closeAll();
           location.reload()
         }, (error) => {
